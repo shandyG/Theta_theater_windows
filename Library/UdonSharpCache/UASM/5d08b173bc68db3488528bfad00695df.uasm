@@ -1,0 +1,52 @@
+.data_start
+
+    .export toggleObject
+
+    __refl_const_intnl_udonTypeID: %SystemInt64, null
+    __refl_const_intnl_udonTypeName: %SystemString, null
+    toggleObject: %UnityEngineGameObject, null
+    __0_const_intnl_SystemUInt32: %SystemUInt32, null
+    __1_intnl_SystemBoolean: %SystemBoolean, null
+    __0_intnl_SystemBoolean: %SystemBoolean, null
+    __0_intnl_returnTarget_UInt32: %SystemUInt32, null
+
+.data_end
+
+        
+         #  using UdonSharp;
+        
+         #  using UnityEngine;
+        
+         #  using VRC.SDKBase;
+        
+         #  using VRC.Udon;
+        
+         #  public class ObjectChangeActivation : UdonSharpBehaviour
+.code_start
+        
+         #  public GameObject toggleObject;
+        
+         #  public override void OnPickupUseDown()
+    .export _onPickupUseDown
+        
+    _onPickupUseDown:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  {
+        
+         #  toggleObject.SetActive(!toggleObject.activeSelf);
+        PUSH, toggleObject
+        PUSH, __0_intnl_SystemBoolean
+        EXTERN, "UnityEngineGameObject.__get_activeSelf__SystemBoolean"
+        PUSH, __0_intnl_SystemBoolean
+        PUSH, __1_intnl_SystemBoolean
+        EXTERN, "SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean"
+        PUSH, toggleObject
+        PUSH, __1_intnl_SystemBoolean
+        EXTERN, "UnityEngineGameObject.__SetActive__SystemBoolean__SystemVoid"
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+.code_end

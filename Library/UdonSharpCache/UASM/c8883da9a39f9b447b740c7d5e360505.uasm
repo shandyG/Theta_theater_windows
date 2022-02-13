@@ -1,0 +1,73 @@
+.data_start
+
+    .export targetText
+    .export now
+
+    __refl_const_intnl_udonTypeID: %SystemInt64, null
+    __refl_const_intnl_udonTypeName: %SystemString, null
+    now: %SystemDateTime, null
+    targetText: %UnityEngineUIText, null
+    __0_this_intnl_ymd: %VRCUdonUdonBehaviour, this
+    __0_const_intnl_SystemString: %SystemString, null
+    __0_const_intnl_SystemType: %SystemType, null
+    __0_const_intnl_SystemUInt32: %SystemUInt32, null
+    __0_intnl_SystemDateTime: %SystemDateTime, null
+    __0_intnl_SystemString: %SystemString, null
+    __0_intnl_UnityEngineTransform: %UnityEngineTransform, null
+    __0_intnl_returnTarget_UInt32: %SystemUInt32, null
+
+.data_end
+
+        
+         #  using System;
+        
+         #  using UdonSharp;
+        
+         #  using UnityEngine;
+        
+         #  using UnityEngine.UI;
+        
+         #  using VRC.SDKBase;
+        
+         #  using VRC.Udon;
+        
+         #  public class ymd : UdonSharpBehaviour
+.code_start
+        
+         #  [SerializeField] private Text targetText;
+        
+         #  [SerializeField] private DateTime now;
+        
+         #  void Start()
+    .export _start
+        
+    _start:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  {
+        
+         #  targetText = this.GetComponent<Text>();
+        PUSH, __0_this_intnl_ymd
+        PUSH, __0_intnl_UnityEngineTransform
+        EXTERN, "UnityEngineComponent.__get_transform__UnityEngineTransform" # GetComponent strongbox mismatch fix
+        PUSH, __0_intnl_UnityEngineTransform
+        PUSH, __0_const_intnl_SystemType
+        PUSH, targetText
+        EXTERN, "UnityEngineUIText.__GetComponent__T"
+        
+         #  targetText.text = DateTime.Now.ToString("yyyy-MM-dd");
+        PUSH, __0_intnl_SystemDateTime
+        EXTERN, "SystemDateTime.__get_Now__SystemDateTime"
+        PUSH, __0_intnl_SystemDateTime
+        PUSH, __0_const_intnl_SystemString
+        PUSH, __0_intnl_SystemString
+        EXTERN, "SystemDateTime.__ToString__SystemString__SystemString"
+        PUSH, targetText
+        PUSH, __0_intnl_SystemString
+        EXTERN, "UnityEngineUIText.__set_text__SystemString__SystemVoid"
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+.code_end
